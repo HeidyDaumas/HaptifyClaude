@@ -94,6 +94,14 @@ The binary tries two actuation methods in order:
 
 No permissions, entitlements, or code signing required.
 
+## Support
+
+If HaptifyClaude saved you from missing another permission prompt while you were grabbing coffee — consider buying me one back.
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/daumasheid7)
+
+Every little buzz of support keeps this project alive. Thank you!
+
 ## License
 
 MIT
