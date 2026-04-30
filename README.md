@@ -1,10 +1,10 @@
-# HaptiClaude
+# HaptifyClaude
 
 Haptic feedback for Claude Code on MacBook. Your trackpad buzzes when Claude needs your attention.
 
 ## How it works
 
-HaptiClaude hooks into Claude Code's **Stop** and **Notification** events. When Claude finishes responding or needs permission, the MacBook's Force Touch trackpad Taptic Engine fires a haptic pattern you can physically feel.
+HaptifyClaude hooks into Claude Code's **Stop** and **Notification** events. When Claude finishes responding or needs permission, the MacBook's Force Touch trackpad Taptic Engine fires a haptic pattern you can physically feel.
 
 Uses Apple's private `MultitouchSupport.framework` for reliable actuation from background processes, with an `NSHapticFeedbackManager` fallback.
 
@@ -17,8 +17,8 @@ Uses Apple's private `MultitouchSupport.framework` for reliable actuation from b
 ## Install
 
 ```bash
-git clone https://github.com/heidydaumas/HaptiClaude.git
-cd HaptiClaude
+git clone https://github.com/heidydaumas/HaptifyClaude.git
+cd HaptifyClaude
 ./install.sh
 ```
 
@@ -76,7 +76,7 @@ Edit `hooks/haptic-notify.sh` and change the haptic command:
 ## Architecture
 
 ```
-HaptiClaude/
+HaptifyClaude/
   haptic.swift          # Swift CLI — drives Taptic Engine
   hooks/
     haptic-notify.sh    # Claude Code hook script
