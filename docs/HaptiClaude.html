@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HaptiClaude — Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+@page {
+  size: letter;
+  margin: 0.75in 0.9in;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #fdfdfd;
+  --text: #1a1a2e;
+  --text-secondary: #555568;
+  --text-dim: #8888a0;
+  --accent: #ff6d00;
+  --accent-light: #fff3e6;
+  --blue: #1a7fff;
+  --blue-light: #e8f2ff;
+  --purple: #7c3aed;
+  --purple-light: #f0e8ff;
+  --border: #e4e4ec;
+  --code-bg: #f4f4f8;
+}
+
+html {
+  font-family: 'Instrument Sans', -apple-system, sans-serif;
+  font-size: 11pt;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body { max-width: 680px; margin: 0 auto; padding: 40px 20px; }
+
+/* Cover */
+.cover {
+  text-align: center;
+  padding: 80px 0 60px;
+  border-bottom: 2px solid var(--text);
+  margin-bottom: 40px;
+  page-break-after: avoid;
+}
+.cover-mono {
+  font-family: 'DM Mono', monospace;
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+.cover h1 {
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 36pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.cover h1 span { color: var(--accent); }
+.cover-tagline {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 14pt;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.cover-meta {
+  font-family: 'DM Mono', monospace;
+  font-size: 8.5pt;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+
+/* Headings */
+h2 {
+  font-size: 16pt;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 36px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  page-break-after: avoid;
+}
+h2 .num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10pt;
+  font-weight: 400;
+  color: var(--accent);
+  margin-right: 6px;
+}
+h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  margin: 20px 0 8px;
+  page-break-after: avoid;
+}
+
+p { margin-bottom: 10px; }
+
+/* Code */
+code {
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5pt;
+  background: var(--code-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 9pt;
+  line-height: 1.7;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 12px 0 16px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  page-break-inside: avoid;
+}
+pre .comment { color: var(--text-dim); }
+pre .keyword { color: var(--purple); }
+pre .string { color: #16a34a; }
+pre .flag { color: var(--blue); }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+th {
+  font-family: 'DM Mono', monospace;
+  font-size: 8.5pt;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--text);
+  color: var(--text-secondary);
+}
+td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+
+/* Callout boxes */
+.callout {
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 10pt;
+  page-break-inside: avoid;
+}
+.callout-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 8.5pt;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.callout.info { background: var(--blue-light); border-left: 3px solid var(--blue); }
+.callout.info .callout-title { color: var(--blue); }
+.callout.warn { background: var(--accent-light); border-left: 3px solid var(--accent); }
+.callout.warn .callout-title { color: var(--accent); }
+
+/* Architecture diagram */
+.arch {
+  font-family: 'DM Mono', monospace;
+  font-size: 9pt;
+  line-height: 1.5;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  page-break-inside: avoid;
+}
+
+/* File tree */
+.tree {
+  font-family: 'DM Mono', monospace;
+  font-size: 9pt;
+  line-height: 1.8;
+  margin: 8px 0 16px;
+}
+.tree .dir { font-weight: 500; }
+.tree .desc { color: var(--text-dim); }
+
+/* Footer */
+.footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 8pt;
+  color: var(--text-dim);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-mono">Open Source Plugin</div>
+  <h1>Hapti<span>Claude</span></h1>
+  <div class="cover-tagline">Haptic feedback for Claude Code on MacBook</div>
+  <div class="cover-meta">
+    Platform: macOS (Force Touch trackpad)<br>
+    Version: 1.0<br>
+    License: MIT
+  </div>
+</div>
+
+<!-- Overview -->
+<h2><span class="num">01</span> Overview</h2>
+
+<p>HaptiClaude is a Claude Code plugin that triggers MacBook Force Touch trackpad haptic feedback whenever a Claude Code session needs user attention. Never miss a permission prompt or idle state again — your trackpad will physically buzz to let you know.</p>
+
+<div class="callout info">
+  <div class="callout-title">How it works</div>
+  Claude Code fires <strong>Notification hooks</strong> when it needs input. HaptiClaude intercepts these events and drives the Taptic Engine through Apple's private <code>MultitouchSupport.framework</code>, with an <code>NSHapticFeedbackManager</code> fallback.
+</div>
+
+<h3>Notification Events</h3>
+<table>
+  <tr><th>Event</th><th>Trigger</th></tr>
+  <tr><td><code>permission_prompt</code></td><td>Claude needs approval to run a tool (Bash, Edit, etc.)</td></tr>
+  <tr><td><code>idle_prompt</code></td><td>Claude finished responding, waiting for your next message</td></tr>
+  <tr><td><code>elicitation_dialog</code></td><td>An MCP server is requesting user input</td></tr>
+</table>
+
+<!-- Architecture -->
+<h2><span class="num">02</span> Architecture</h2>
+
+<div class="arch">
+Claude Code Session
+  │
+  ├─ Notification hook fires (JSON on stdin)
+  │
+  ├─ hooks/haptic-notify.sh
+  │     Reads notification_type from JSON
+  │     Invokes the haptic binary
+  │
+  └─ haptic (Swift CLI binary)
+        Strategy 1: MTActuatorActuate (private API, works in background)
+        Strategy 2: NSHapticFeedbackManager (AppKit fallback)
+        │
+        └─ Taptic Engine → trackpad vibration
+</div>
+
+<h3>File Structure</h3>
+<div class="tree">
+  <span class="dir">HaptiClaude_MacOs/</span><br>
+  ├── haptic.swift <span class="desc">── Native Swift CLI, drives the Taptic Engine</span><br>
+  ├── haptic <span class="desc">── Compiled universal binary</span><br>
+  ├── hooks/<br>
+  │   ├── haptic-notify.sh <span class="desc">── Claude Code Notification hook</span><br>
+  │   └── hooks.json <span class="desc">── Hook config for project-level use</span><br>
+  ├── composer/<br>
+  │   ├── index.html <span class="desc">── Visual pattern composer UI</span><br>
+  │   └── server.py <span class="desc">── Local server for live trackpad testing</span><br>
+  ├── install.sh <span class="desc">── Global installer</span><br>
+  └── uninstall.sh <span class="desc">── Clean uninstaller</span>
+</div>
+
+<!-- Haptic Binary -->
+<h2><span class="num">03</span> The Haptic Binary</h2>
+
+<p>The <code>haptic</code> binary is a native Swift CLI tool that actuates the MacBook trackpad's Taptic Engine. It requires no permissions, entitlements, or code signing.</p>
+
+<h3>Usage</h3>
+<pre>./haptic [pattern] [time] [--strength N] [--repeat N] [--delay MS]</pre>
+
+<h3>Parameters</h3>
+<table>
+  <tr><th>Parameter</th><th>Values</th><th>Default</th></tr>
+  <tr><td><code>pattern</code></td><td><code>generic</code>, <code>alignment</code>, <code>levelChange</code></td><td><code>generic</code></td></tr>
+  <tr><td><code>time</code></td><td><code>now</code>, <code>default</code>, <code>drawCompleted</code></td><td><code>default</code></td></tr>
+  <tr><td><code>--strength</code></td><td>1 – 16 (raw actuator intensity)</td><td>Pattern-dependent</td></tr>
+  <tr><td><code>--repeat</code></td><td>1 – N (number of beats)</td><td>1</td></tr>
+  <tr><td><code>--delay</code></td><td>0 – N ms (between beats)</td><td>50</td></tr>
+</table>
+
+<h3>Base Patterns</h3>
+<table>
+  <tr><th>Pattern</th><th>Feel</th><th>Default Strength</th></tr>
+  <tr><td><code>generic</code></td><td>Soft, neutral tap</td><td>4</td></tr>
+  <tr><td><code>alignment</code></td><td>Subtle, precise click</td><td>2</td></tr>
+  <tr><td><code>levelChange</code></td><td>Pronounced thud</td><td>6</td></tr>
+</table>
+
+<h3>Dual Actuation Strategy</h3>
+<p>The binary tries two methods in order:</p>
+<ol style="margin: 8px 0 12px 20px;">
+  <li><strong>MultitouchSupport.framework</strong> (private API) — calls <code>MTActuatorActuate</code> directly. Works from background processes without requiring the calling app to be frontmost.</li>
+  <li><strong>NSHapticFeedbackManager</strong> (AppKit) — public API fallback. Creates a minimal <code>NSApplication</code> context with <code>.accessory</code> activation policy to enable haptics from a CLI process.</li>
+</ol>
+
+<h3>Build from Source</h3>
+<pre>swiftc haptic.swift -o haptic \
+  -framework AppKit \
+  -F /System/Library/PrivateFrameworks \
+  -framework MultitouchSupport -O</pre>
+
+<!-- Hook Configuration -->
+<h2><span class="num">04</span> Hook Configuration</h2>
+
+<p>HaptiClaude hooks into Claude Code's <strong>Notification</strong> event. The hook script receives JSON on stdin and triggers the haptic binary.</p>
+
+<h3>Settings Entry</h3>
+<p>Added to <code>~/.claude/settings.json</code> by the installer:</p>
+<pre>{
+  "<span class="keyword">hooks</span>": {
+    "<span class="keyword">Notification</span>": [
+      {
+        "<span class="flag">matcher</span>": "<span class="string">permission_prompt|idle_prompt|elicitation_dialog</span>",
+        "<span class="flag">hooks</span>": [
+          {
+            "type": "<span class="string">command</span>",
+            "command": "<span class="string">/path/to/hooks/haptic-notify.sh</span>",
+            "timeout": <span class="keyword">10</span>
+          }
+        ]
+      }
+    ]
+  }
+}</pre>
+
+<h3>Current Pattern Configuration</h3>
+<p>The hook fires a single pattern for all notification types:</p>
+<pre><span class="comment"># 5-second continuous rumble at max strength</span>
+./haptic levelChange now --strength 16 --repeat 100 --delay 50</pre>
+
+<table>
+  <tr><th>Property</th><th>Value</th></tr>
+  <tr><td>Pattern</td><td><code>levelChange</code> (strongest base feel)</td></tr>
+  <tr><td>Strength</td><td>16 (maximum actuator intensity)</td></tr>
+  <tr><td>Repeat</td><td>100 beats</td></tr>
+  <tr><td>Delay</td><td>50ms between beats</td></tr>
+  <tr><td>Total duration</td><td>~5 seconds</td></tr>
+</table>
+
+<!-- Composer -->
+<h2><span class="num">05</span> Pattern Composer</h2>
+
+<p>HaptiClaude includes a web-based visual pattern composer for designing and testing haptic patterns interactively.</p>
+
+<h3>Starting the Composer</h3>
+<pre><span class="keyword">cd</span> composer
+python3 server.py
+<span class="comment"># Opens at http://localhost:4780</span></pre>
+
+<p>The composer provides:</p>
+<ul style="margin: 8px 0 12px 20px; line-height: 1.8;">
+  <li><strong>Three preset slots</strong> — Permission (amber), Idle (blue), MCP (purple)</li>
+  <li><strong>Visual timeline</strong> — glowing pulse bars sized by strength, spaced by delay</li>
+  <li><strong>Live trackpad testing</strong> — Play buttons fire real haptics via the local server</li>
+  <li><strong>Pattern sampler</strong> — tap to compare Generic, Alignment, and Level Change feels</li>
+  <li><strong>Export</strong> — generates the complete hook script with your custom patterns</li>
+</ul>
+
+<div class="callout warn">
+  <div class="callout-title">Requirement</div>
+  The local Python server (<code>server.py</code>) must be running for live trackpad testing. The visual preview works without it.
+</div>
+
+<!-- Installation -->
+<h2><span class="num">06</span> Installation</h2>
+
+<h3>Quick Install</h3>
+<pre>git clone &lt;repo&gt; &amp;&amp; cd HaptiClaude_MacOs
+./install.sh</pre>
+
+<p>The installer builds the Swift binary, tests haptic feedback, and registers the hook in <code>~/.claude/settings.json</code>.</p>
+
+<h3>Requirements</h3>
+<table>
+  <tr><th>Requirement</th><th>Details</th></tr>
+  <tr><td>Hardware</td><td>MacBook with Force Touch trackpad (2015+) or Magic Trackpad 2+</td></tr>
+  <tr><td>Software</td><td>macOS, Swift compiler (<code>xcode-select --install</code>)</td></tr>
+  <tr><td>Claude Code</td><td>Any version with Notification hooks support</td></tr>
+</table>
+
+<h3>Uninstall</h3>
+<pre>./uninstall.sh</pre>
+<p>Removes the hook entry from settings. Delete the directory to fully remove.</p>
+
+<!-- Technical Notes -->
+<h2><span class="num">07</span> Technical Notes</h2>
+
+<h3>Why MultitouchSupport?</h3>
+<p>The public <code>NSHapticFeedbackManager</code> API may silently suppress haptic feedback when the calling process is not the frontmost application. Since Claude Code hooks run as background shell commands, the private <code>MTActuatorActuate</code> function from <code>MultitouchSupport.framework</code> is used as the primary actuation method — it bypasses the foreground-app check and drives the Taptic Engine directly.</p>
+
+<h3>Strength Scale (1–16)</h3>
+<p>The <code>--strength</code> parameter maps directly to the first argument of <code>MTActuatorActuate</code>. Apple's public API only exposes three levels (Generic ≈ 4, Alignment ≈ 2, Level Change ≈ 6), but the private API accepts values up to 16 for significantly stronger actuation.</p>
+
+<h3>No Permissions Required</h3>
+<p>Both <code>NSHapticFeedbackManager</code> and <code>MTActuatorActuate</code> work without special entitlements, sandbox exceptions, user permission prompts, or code signing. The binary runs as an unsigned CLI tool.</p>
+
+<div class="footer">
+  HaptiClaude &middot; MIT License &middot; macOS Force Touch Trackpad
+</div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Compiled binary (rebuild with install.sh)
+haptic
+
+# Logs
+haptic.log
+*.log
+
+# Local Claude settings
+.claude/
+
+# Composer (not included in v1)
+composer/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
